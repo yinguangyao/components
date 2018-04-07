@@ -1,0 +1,71 @@
+/* 这个是组件内部的样式 */
+@mixin center-all {
+    justify-content: center;
+    align-items: center;
+}
+@mixin active-style {
+    background: #F0EDE6;
+    color: #222222;
+    box-shadow: none;
+}
+@mixin animation($attr: background) {
+    transition-property: $attr;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    // transition-delay: 2s;
+}
+.show {
+    display: block;
+}
+.hide {
+    display: none!important;
+}
+.tabs {
+    background: repeating-linear-gradient( -45deg, #D7D3C7, #D7D3C7 2px, #CECABE 2px, #CECABE 4px);
+    padding: 10px;
+    position: relative;
+    border-radius: 5px;
+    .tab-nav-list {
+        display: flex;
+        border-bottom: none;
+        justify-content: center;
+        .tab-nav-item {
+            flex: 1;
+            padding: 10px 20px;
+            text-align: center;
+            // background: white;
+            background: #d0c9b8;
+            color: #847E6F;
+            text-shadow: 1px 1px 1px white;
+            box-shadow: inset 0 0 2px hsla(0,0%,0%,0.15);
+            @include animation(background);
+        }
+        .cur {
+            // background: black;
+            @include active-style;
+        }
+    }
+    .tab-content {
+        .tab-pane {
+            background: #F0EDE6;
+            border-top: none;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            @include animation(display);
+        }
+    }
+    &:before {
+        content: "";
+        display: block;
+        left: -2px;
+        top: -2px;
+        bottom: -2px;
+        right: -2px;
+        position: absolute;
+        border: 1px solid rgb(221, 218, 209);
+        z-index: -1;
+    }
+}
