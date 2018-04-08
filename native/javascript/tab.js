@@ -7,7 +7,7 @@ class Tabs {
         const defaultOptions = {
             root: "#tabs",
             activeKey: 0,
-            onSelect: function() {}
+            onSelect: noop
         }
         options = Object.assign({}, defaultOptions, options);
         $("#tabs .tab-nav-item").get(0).addClass("cur");
