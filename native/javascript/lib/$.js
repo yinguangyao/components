@@ -1,3 +1,4 @@
+// 一个简单的类jQuery库
 (function () {
     const root = this;
     const previous$ = root.$
@@ -60,6 +61,10 @@
     $.fn = $.prototype = {
         constructor: $,
         _init: function (dom) {
+            if(typeof dom == "object" && dom === window) {
+                this.element = dom;
+                return this;
+            }
             if (this.isDOM(dom)) {
                 this.element = dom;
             } else {

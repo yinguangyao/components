@@ -29,12 +29,14 @@ module.exports =  function (config) {
       // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
       preprocessors: {
         'webpack.test.js': ["webpack"],
-        'app/src/*.js': ['coverage'],
-        'app/src/**/*.js': ['coverage'],
-        'app/src/**/**/*.js': ['coverage'],
-        'app/src/*.jsx': ['coverage'],
-        'app/src/**/*.jsx': ['coverage'],
-        'app/src/**/**/*.jsx': ['coverage']
+        'native/javascript/*.js': ['coverage'],
+        'native/javascript/lib/*.js': ['coverage'],
+        'react/src/*.jsx': ['coverage'],
+        'react/src/*.js': ['coverage'],
+        'react/src/**/*.jsx': ['coverage'],
+        'react/src/**/*.js': ['coverage'],
+        'react/src/**/**/*.jsx': ['coverage'],
+        'react/src/**/**/*.js': ['coverage'],
       },
   
   
