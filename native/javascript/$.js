@@ -139,4 +139,4 @@
     }
     $.fn._init.prototype = $.fn
     root.$ = $
-}())
+}.call(this))
