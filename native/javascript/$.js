@@ -77,7 +77,7 @@
                 domArr = ArrayProto.slice.call(this.element, 0);
             }
             domArr.forEach((dom, i) => {
-                dom && dom.addEventListener(eventType, (event) => {
+                dom.addEventListener && dom.addEventListener(eventType, (event) => {
                     if(!delegateDOM) {
                         fn.call(dom, event);
                         return;
