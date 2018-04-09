@@ -8,31 +8,42 @@
     <link href="../react/build/css/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="tabs" id="tabs">
+    <div class="tabs" id="tabs"></div>
+    <script id="tpl" type="text/template">
         <ul class="tab-nav-list">
-            <li class="tab-nav-item" data-index="0">1111</li>
-            <li class="tab-nav-item" data-index="1">2222</li>
-            <li class="tab-nav-item" data-index="2">3333</li>
+            <%for(var i=0;i<tabs.length;i++) {%>
+                <li class="tab-nav-item" data-index="<%i%>"><%tabs[i].nav%></li>
+            <%}%>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane">
-                <div class="pane-content">1111</div>
-            </div>
-            <div class="tab-pane hide">
-                <div class="pane-content">2222</div>
-            </div>
-            <div class="tab-pane hide">
-                <div class="pane-content">3333</div>
-            </div>
+            <%for(var i=0;i<tabs.length;i++) {%>
+                <div class="tab-pane">
+                    <div class="pane-content"><%tabs[i].content%></div>
+                </div>
+            <%}%>
         </div>
-    </div>
+    </script>
     <script src="./javascript/lib/$.js"></script>
+    <script src="./javascript/lib/templateX.js"></script>
     <script src="./javascript/tab.js"></script>
     <script>
         $.ready(() => {
+            const tpl = $("#tpl").get(0).html()
+            const data = [{
+                nav: "title one",
+                content: "这是选项卡一"
+            }, {
+                nav: "title two",
+                content: "这是选项卡二"
+            }, {
+                nav: "title three",
+                content: "这是选项卡三"
+            }]
+            // $("#tabs").get(0).html(_.template(tpl)({tabs: data}))
+            $("#tabs").get(0).html(templateX(tpl, {tabs: data}))
             new Tabs({
                 root: "#tabs",
-                activeKey: 1,
+                defaultKey: 1,
                 onSelect: function(index) {
                     console.log("this is index: " + index);
                 }

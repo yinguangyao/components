@@ -182,6 +182,20 @@
                 $(childNode).removeClass(className);
             })
             $(this.element).addClass(className);
+        },
+        uniqueNotClass: function(className) {
+            if (!this.element) return;
+            const children = this.element.parentNode && this.element.parentNode.children
+            each(children, (childNode) => {
+                $(childNode).addClass(className);
+            })
+            $(this.element).removeClass(className);
+        },
+        html: function(value) {
+            if(!value) {
+                return this.element.innerHTML
+            }
+            return this.element.innerHTML = value
         }
     }
     extend($, {
