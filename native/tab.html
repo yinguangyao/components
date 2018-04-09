@@ -28,19 +28,21 @@
     <script src="./javascript/tab.js"></script>
     <script>
         $.ready(() => {
-            const tpl = $("#tpl").get(0).html()
-            const data = [{
-                nav: "title one",
-                content: "这是选项卡一"
-            }, {
-                nav: "title two",
-                content: "这是选项卡二"
-            }, {
-                nav: "title three",
-                content: "这是选项卡三"
-            }]
-            // $("#tabs").get(0).html(_.template(tpl)({tabs: data}))
-            $("#tabs").get(0).html(templateX(tpl, {tabs: data}))
+            const render = () => {
+                const tpl = $("#tpl").get(0).html()
+                const data = [{
+                    nav: "title one",
+                    content: "这是选项卡一"
+                }, {
+                    nav: "title two",
+                    content: "这是选项卡二"
+                }, {
+                    nav: "title three",
+                    content: "这是选项卡三"
+                }]
+                $("#tabs").get(0).html(templateX(tpl, {tabs: data}))
+            }
+            render()
             new Tabs({
                 root: "#tabs",
                 defaultKey: 1,

@@ -1,3 +1,10 @@
+/* 一个简单的模板引擎，你可以在script里面编写模板，用法如下：
+* 如果是一个变量，<%name%>
+* 如果是JS语句，<%if(true) { alert("hello, world"}%>
+* 调用方式，templateX(tpl, data); 
+* tpl指模板字符串，data是传入的对象
+* 具体使用方式请参考tab.html
+*/
 (function () {
     const root = this;
     let match, index = 0, code = "const arr = [];"

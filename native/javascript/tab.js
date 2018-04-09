@@ -1,29 +1,36 @@
-function noop() {}
-class Tabs {
-    constructor(options = {}) {
-        this.init(options)
-    }
-    init(options = {}) {
-        const defaultOptions = {
-            root: "#tabs",
-            defaultKey: 0,
-            onSelect: noop
+(function() {
+    const root = this;
+    function noop() {}
+    class Tabs {
+        constructor(options = {}) {
+            const defaultOptions = {
+                root: "#tabs",
+                defaultKey: 0,
+                onSelect: noop
+            }
+            options = Object.assign({}, defaultOptions, options);
+            Object.keys(options).map((key) => {
+                this[key] = options[key]
+            })
+            this._init(options)
         }
-        options = Object.assign({}, defaultOptions, options);
-        $("#tabs .tab-nav-item").get(options.defaultKey).uniqueClass("cur");
-        $("#tabs .tab-pane").get(options.defaultKey).uniqueNotClass("hide");
-        Object.keys(options).map((key) => {
-            this[key] = options[key]
-        })
-        this.handleClick()
+        _init(options = {}) {
+            // 初始化
+            this.changeTab(options.defaultKey);
+            this.handleClick()
+        }
+        changeTab(index) {
+            $("#tabs .tab-pane").get(index).uniqueNotClass("hide");
+            $("#tabs .tab-nav-item").get(index).uniqueClass("cur");
+        }
+        handleClick() {
+            $(this.root).on("click", ".tab-nav-item", (event) => {
+                const $this = $(event.target)
+                const index = $this.getAttr("data-index")
+                this.onSelect(index);
+                this.changeTab(index);
+            })
+        }
     }
-    handleClick() {
-        $(this.root).on("click", ".tab-nav-item", (event) => {
-            const $this = $(event.target)
-            const index = $this.getAttr("data-index")
-            $this.uniqueClass("cur");
-            this.onSelect(index);
-            $(".tab-pane").get(index).uniqueNotClass("hide");
-        })
-    }
-}
+    root.Tabs = Tabs
+}.call(this))

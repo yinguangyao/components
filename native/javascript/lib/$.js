@@ -1,4 +1,5 @@
 // 一个简单的类jQuery库
+// todo: 未对NodeList类型的空DOM节点进行判断，这样会导致后续处理中报错
 (function () {
     const root = this;
     const previous$ = root.$
