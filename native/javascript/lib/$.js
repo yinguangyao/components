@@ -1,4 +1,4 @@
-// 一个简单的类jQuery库
+// 一个简单的类jQuery库（这个库的坑暂时非常多，之后会进行优化）
 // todo: 未对NodeList类型的空DOM节点进行判断，这样会导致后续处理中报错
 (function () {
     const root = this;
@@ -14,6 +14,17 @@
         return (...args) => {
             return fn.apply(context, args);
         }
+    }
+    const publish = (eventType, data) => {
+        const event = new CustomEvent(eventType, {
+            detail: data
+        })
+        window.dispatchEvent(event);
+    }
+    const subscribe = (eventType, fn) => {
+        window.addEventListener(eventType, function(e) {
+            fn.call(fn, e.detail);
+        })
     }
     // 判断是否为类数组
     const isArrayLike = (obj) => {
@@ -74,6 +85,7 @@
             return this;
         },
         _getQueryType: function (queryString) {
+            if(!queryString) return ""
             let type = ""
             switch (queryString.slice(0, 1)) {
                 case "#":
@@ -122,13 +134,14 @@
             // 如果是DOM List（这里只判断了第一个是不是HTMLElement）
             return obj[0] instanceof HTMLElement;
         },
+        // 如果使用trigger触发自定义的事件，需要用event.detail获取到传入的数据（这里更推荐使用publish和subscribe）
         on: function (eventType, delegateDOM, fn) {
-            const domType = this._getQueryType(delegateDOM);
-            let domArr;
             if (this.isFunction(delegateDOM)) {
                 fn = delegateDOM
                 delegateDOM = null
             }
+            const domType = this._getQueryType(delegateDOM);
+            let domArr;
             if (!this.element.length) {
                 domArr = [this.element];
             } else {
@@ -155,6 +168,12 @@
                 })
             })
             return this;
+        },
+        trigger: function(eventType, data) {
+            const event = new CustomEvent(eventType, {
+                detail: data
+            })
+            this.element.dispatchEvent(event);
         },
         _baseClassFunc: function (sign) {
             return (...args) => {
@@ -183,6 +202,7 @@
                 $(childNode).removeClass(className);
             })
             $(this.element).addClass(className);
+            return this;
         },
         uniqueNotClass: function(className) {
             if (!this.element) return;
@@ -191,22 +211,31 @@
                 $(childNode).addClass(className);
             })
             $(this.element).removeClass(className);
+            return this;
         },
         html: function(value) {
             if(!value) {
                 return this.element.innerHTML
             }
             return this.element.innerHTML = value
+        },
+        append: function(child) {
+            const documentFragment = document.createDocumentFragment()
+            documentFragment.appendChild(child);
+            this.element.appendChild(documentFragment);
+            return this;
         }
     }
     extend($, {
-        get: get,
-        ready: ready,
-        extend: extend,
-        bind: bind,
-        isArrayLike: isArrayLike,
-        each: each,
-        map: map,
+        get,
+        ready,
+        extend,
+        bind,
+        isArrayLike,
+        each,
+        map,
+        publish,
+        subscribe,
         noConflict: function() {
             root.$ = previous$
             return this;

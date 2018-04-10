@@ -7,6 +7,8 @@
 由于选择器实现还不够完善，目前只支持传入字符串和DOM。
 不管你是选择id还是class，在进行下一步操作之前（比如addClass、removeClass，on可以无视）必须先告知要获取到第几个DOM，比如$("#tabs").get(0).addClass("tabs")，如果没有get(0)，这里会报错。
 同时，jQuery中的$(document).ready(function() {})和$(function() {})在这里一律用$.ready(function() {})来代替。
+这里实现了两个观察者模式，一个是挂载到$函数上的publish和subscribe，这里绑定的是全局window。
+另一个是挂载到$.prototype上面的on和trigger函数，这个可以在DOM上面绑定事件并监听，但是通过trigger触发的自定义事件传入的数据，需要在on的回调函数中以event.detail的形式来获取到。
 ## templateX.js ##
 这是一个简单的模板引擎。
 语法类似underscore的template，但是不同点在于不再区分<%=%>和<%%>，在这里面一律按照<%%>来进行编写。

@@ -1,36 +1,28 @@
-(function() {
-    const root = this;
-    function noop() {}
-    class Tabs {
-        constructor(options = {}) {
-            const defaultOptions = {
-                root: "#tabs",
-                defaultKey: 0,
-                onSelect: noop
-            }
-            options = Object.assign({}, defaultOptions, options);
-            Object.keys(options).map((key) => {
-                this[key] = options[key]
-            })
-            this._init(options)
+// todo: 实现一个观察者模式来监听数据变化
+const data = {
+    tabs: [{
+        nav: "title one",
+        content: "这是选项卡一"
+    }, {
+        nav: "title two",
+        content: "这是选项卡二"
+    }, {
+        nav: "title three",
+        content: "这是选项卡三"
+    }]
+}
+
+const render = (tpl, data, targetNode) => {
+    $(targetNode).get(0).html(templateX(tpl, data))
+}
+$.ready(() => {
+    const tpl = $("#tpl").get(0).html()
+    render(tpl, data, "#tabs");
+    new Tabs({
+        root: "#tabs",
+        defaultKey: 1,
+        onSelect: function(index) {
+            console.log("this is index: " + index);
         }
-        _init(options = {}) {
-            // 初始化
-            this.changeTab(options.defaultKey);
-            this.handleClick()
-        }
-        changeTab(index) {
-            $("#tabs .tab-pane").get(index).uniqueNotClass("hide");
-            $("#tabs .tab-nav-item").get(index).uniqueClass("cur");
-        }
-        handleClick() {
-            $(this.root).on("click", ".tab-nav-item", (event) => {
-                const $this = $(event.target)
-                const index = $this.getAttr("data-index")
-                this.onSelect(index);
-                this.changeTab(index);
-            })
-        }
-    }
-    root.Tabs = Tabs
-}.call(this))
+    })
+})
