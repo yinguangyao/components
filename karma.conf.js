@@ -1,6 +1,6 @@
 // Karma configuration
 // Generated on Fri Dec 15 2017 14:03:13 GMT+0800 (中国标准时间)
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports =  function (config) {
     config.set({
   
@@ -90,7 +90,10 @@ module.exports =  function (config) {
             test: /\.(js|jsx)$/,
             loader: 'babel-loader',
             exclude: /node_modules/
-          }]
+          }, {
+            "test": /\.(sass|scss)$/,
+            "loader": 'style-loader!css-loader!sass-loader'
+        }]
         }
       }
     })

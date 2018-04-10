@@ -1,13 +1,12 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import { expect } from 'chai'
-import TabPane from '../components/TabPane'
-import Tabs from '../components/Tabs'
+import TabPane from '../components/TabPane.jsx'
+import Tabs from '../components/Tabs.jsx'
 
 describe("tabs", () => {
-    it("tabPane", () => {
+    it("test tabPane", () => {
         let tabPane = shallow(<TabPane currentKey={1} activeKey = {1}>hello world</TabPane>)
-        expect(tabPane.find("div").attr("class").to.equal("tab-pane"));
-        expect(tabPane.find("div").text().to.equal("hello world"))
+        expect(tabPane.text()).to.equal("hello world")
     })
 })
