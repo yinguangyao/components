@@ -34,10 +34,14 @@
     <script src="./javascript/lib/templateX.js"></script>
     <script src="./javascript/tab.js"></script>
     <script>
+        // todo: 实现一个观察者模式来监听数据变化，从而引发view重新render
         $.ready(() => {
-            const render = () => {
-                const tpl = $("#tpl").get(0).html()
-                const data = [{
+            const render = (tpl, data, targetNode) => {
+                $(targetNode).get(0).html(templateX(tpl, data))
+            }
+            const tpl = $("#tpl").get(0).html()
+            const data = {
+                tabs: [{
                     nav: "title one",
                     content: "这是选项卡一"
                 }, {
@@ -47,9 +51,8 @@
                     nav: "title three",
                     content: "这是选项卡三"
                 }]
-                $("#tabs").get(0).html(templateX(tpl, {tabs: data}))
             }
-            render()
+            render(tpl, data, "#tabs");
             new Tabs({
                 root: "#tabs",
                 defaultKey: 1,
