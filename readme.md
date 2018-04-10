@@ -15,7 +15,11 @@
 具体用法可以参考tab.html里面的例子。
 ## 基于react的Tab组件 ##
 Tab组件接受defaultKey和onSelect两个参数。
+
 defaultKey是指默认的指定key值，用于第一次渲染的时候激活指定的tab。onSelect是一个函数，参数是当前激活状态tab的key值。
+
 TabPane组件作为Tab组件的插槽使用，接受currentKey和title两个参数。
+
 currentKey是指当前tab的key，title则是当前tab头部的名称。
+
 TabPane组件还会接受用户自定义的插槽，这个会当做tab的主体内容进行渲染，用户可以传入字符串或者自定义的DOM结构。
