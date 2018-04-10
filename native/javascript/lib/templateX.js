@@ -4,11 +4,12 @@
 * 调用方式，templateX(tpl, data); 
 * tpl指模板字符串，data是传入的对象
 * 具体使用方式请参考tab.html
+* todo: 由于正则解析的问题，目前不支持类似{# #}的语法，也无法在<% %>在进行取余%处理
 */
 (function () {
     const root = this;
     let match, index = 0, code = "const arr = [];"
-    let evaluate = /<%([^%>]+)%>/g, reJs = /^( )?(for|if|switch|case|else|break|{|})(.*)/g
+    let evaluate = /<%([^%>]+)?%>/g, reJs = /^( )?(for|if|switch|case|else|break|{|})(.*)/g
     const escapes = {
         "'": "'",
         '"': '"',
