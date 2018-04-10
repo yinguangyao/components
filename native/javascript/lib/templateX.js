@@ -8,14 +8,27 @@
 (function () {
     const root = this;
     let match, index = 0, code = "const arr = [];"
-    const re = /<%([^%>]+)%>/g,
-            reJs = /^( )?(for|if|switch|case|else|break|{|})(.*)/g
+    let evaluate = /<%([^%>]+)%>/g, reJs = /^( )?(for|if|switch|case|else|break|{|})(.*)/g
+    const escapes = {
+        "'": "'",
+        '"': '"',
+        '\\': '\\',
+        '\r': 'r',  
+        '\n': 'n',
+        '\u2028': 'u2028', 
+        '\u2029': 'u2029' 
+      };
+    const escapeChar = (escape) => {
+        return '\\' + escapes[escape];
+    }
+    const escaper = /\\|'|"|\r|\n|\u2028|\u2029/g;
     const add = (str, bool) => {
-        code += bool? str.match(reJs) ? str : 'arr.push(' + str + ');' : 'arr.push("' + str.replace(/"/g, '\\"').replace(/[\r\n]/g, '') + '");\n'
+        code += bool? str.match(reJs) ? str : 'arr.push(' + str + ');' : 'arr.push("' + str.replace(escaper, escapeChar) + '");\n'
         return add;
     }
-    const templateX = function (tpl, obj) {
-        while (match = re.exec(tpl)) {
+    const templateX = function (tpl, obj, newEvaluate) {
+        if(newEvaluate)  evaluate = newEvaluate
+        while (match = evaluate.exec(tpl)) {
             add(tpl.slice(index, match.index))(match[1], true)
             index = match[0].length + match.index
         }
