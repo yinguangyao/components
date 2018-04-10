@@ -9,7 +9,7 @@
 (function () {
     const root = this;
     let match, index = 0, code = "const arr = [];"
-    let evaluate = /<%([^%>]+)?%>/g, reJs = /^( )?(for|if|switch|case|else|break|{|})(.*)/g
+    let evaluate = /<%([\s\S]+?)%>/g, reJs = /^( )?(for|if|switch|case|else|break|{|})(.*)/g
     const escapes = {
         "'": "'",
         '"': '"',
