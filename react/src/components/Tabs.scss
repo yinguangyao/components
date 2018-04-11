@@ -23,17 +23,25 @@
 .tabs {
     background: repeating-linear-gradient( -45deg, #D7D3C7, #D7D3C7 2px, #CECABE 2px, #CECABE 4px);
     padding: 10px;
-    position: relative;
+    overflow: hidden;
+    position: absolute;
     border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
     .tab-nav-list {
         display: flex;
         border-bottom: none;
         justify-content: center;
+        height: 60px;
         .tab-nav-item {
             padding: 10px 20px;
             text-align: center;
             line-height: 40px;
+            flex: 1;
             height: 40px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
             background: #d0c9b8;
             color: #847E6F;
             text-shadow: 1px 1px 1px white;
@@ -50,6 +58,7 @@
             background: #F0EDE6;
             border-top: none;
             text-align: center;
+            font-size: 2rem;
             min-height: 200px;
             display: flex;
             align-items:center;
