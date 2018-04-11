@@ -403,10 +403,11 @@ var TabContent = function (_React$PureComponent) {
             if (_this.delta.x < 0) {
                 if (_this.state.activeKey >= length - 1) {
                     _this.translate(length, speed);
+                    _this.props.changeTab(0);
                     setTimeout(function () {
                         nextIndex = 0;
                         speed = 0;
-                        _this.props.changeTab(nextIndex);
+                        // this.props.changeTab(nextIndex)
                         _this.translate(nextIndex, speed);
                     }, speed - 10);
                     return;
@@ -416,10 +417,10 @@ var TabContent = function (_React$PureComponent) {
             } else {
                 if (_this.state.activeKey <= 0) {
                     _this.translate(-1, speed);
+                    _this.props.changeTab(length - 1);
                     setTimeout(function () {
                         nextIndex = length - 1;
                         speed = 0;
-                        _this.props.changeTab(nextIndex);
                         _this.translate(nextIndex, speed);
                     }, speed - 10);
                     return;

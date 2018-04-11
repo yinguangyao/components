@@ -52,10 +52,11 @@ class TabContent extends React.PureComponent {
         if(this.delta.x < 0) {
             if(this.state.activeKey >= length-1) {
                 this.translate(length, speed)
+                this.props.changeTab(0)
                 setTimeout(() => {
                     nextIndex = 0
                     speed = 0
-                    this.props.changeTab(nextIndex)
+                    // this.props.changeTab(nextIndex)
                     this.translate(nextIndex, speed)
                 }, speed-10)
                 return
@@ -65,10 +66,10 @@ class TabContent extends React.PureComponent {
         } else {
             if(this.state.activeKey <= 0) {
                 this.translate(-1, speed)
+                this.props.changeTab(length - 1)
                 setTimeout(() => {
                     nextIndex = length - 1
                     speed = 0
-                    this.props.changeTab(nextIndex)
                     this.translate(nextIndex, speed)
                 }, speed-10)
                 return
