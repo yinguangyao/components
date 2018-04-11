@@ -116,7 +116,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var TabPage = function TabPage() {
     return _react2.default.createElement(
         _Tabs2.default,
-        { defaultKey: 1 },
+        { defaultKey: 1, isCirculate: false },
         _react2.default.createElement(
             _TabPane2.default,
             { currentKey: 0, title: '\u9009\u9879\u53611' },
@@ -417,14 +417,22 @@ var TabContent = function (_React$PureComponent) {
 
         _this.touchMove = function (event) {
             var touches = event.touches[0];
-            var width = _this.props.width;
+            var _this$props2 = _this.props,
+                width = _this$props2.width,
+                isCirculate = _this$props2.isCirculate,
+                children = _this$props2.children;
 
+            var length = children.length || 0;
             if (event.touches.length > 1 || event.scale && event.scale !== 1) return;
             _this.delta = {
                 x: touches.pageX - _this.start.x,
                 y: touches.pageY - _this.start.y
             };
-            var dist = _this.delta.x - (_this.state.activeKey + 1) * width;
+            var index = isCirculate ? _this.state.activeKey + 1 : _this.state.activeKey;
+            var dist = _this.delta.x - index * width;
+            if (!isCirculate && (_this.delta.x <= -100 && _this.state.activeKey >= length - 1 || _this.delta.x >= 100 && _this.state.activeKey <= 0)) {
+                return;
+            }
             _this.translate(dist, 0);
         };
 
@@ -437,9 +445,9 @@ var TabContent = function (_React$PureComponent) {
         };
 
         _this.to = function (index, speed, tabIndex) {
-            var _this$props2 = _this.props,
-                width = _this$props2.width,
-                isCirculate = _this$props2.isCirculate;
+            var _this$props3 = _this.props,
+                width = _this$props3.width,
+                isCirculate = _this$props3.isCirculate;
 
             if (tabIndex === void 0) {
                 tabIndex = index;
@@ -546,14 +554,15 @@ var TabContent = function (_React$PureComponent) {
                 _props3$onSelect = _props3.onSelect,
                 onSelect = _props3$onSelect === undefined ? noop : _props3$onSelect,
                 children = _props3.children,
-                width = _props3.width;
+                width = _props3.width,
+                isCirculate = _props3.isCirculate;
 
             var length = children.length || 0;
             return _react2.default.createElement(
                 'div',
                 {
                     style: {
-                        width: width * (length + 2) + "px"
+                        width: isCirculate ? width * (length + 2) + "px" : width * length + "px"
                     },
                     className: 'tab-content',
                     ref: function ref(r) {

@@ -57,15 +57,25 @@ class TabContent extends React.PureComponent {
     touchMove = (event) => {
         const touches = event.touches[0]
         const {
-            width
+            width,
+            isCirculate,
+            children
         } = this.props
+        const length = children.length || 0
         if (event.touches.length > 1 || (event.scale && event.scale !== 1))
             return
         this.delta = {
             x: touches.pageX - this.start.x,
             y: touches.pageY - this.start.y
         }
-        const dist = this.delta.x - (this.state.activeKey + 1) * width
+        const index = isCirculate ? this.state.activeKey + 1 : this.state.activeKey
+        const dist = this.delta.x - index * width
+        if(!isCirculate &&
+            ((this.delta.x <= -100 && this.state.activeKey >= length - 1) ||
+            (this.delta.x >= 100 && this.state.activeKey <= 0))
+        ) {
+            return
+        }
         this.translate(dist, 0)
     }
     touchEnd = (e) => {
@@ -143,13 +153,14 @@ class TabContent extends React.PureComponent {
             activeKey = 1,
             onSelect = noop,
             children,
-            width
+            width,
+            isCirculate
         } = this.props
         const length = children.length || 0
         return (
             <div
                 style={{
-                    width: width*(length+2)+"px"
+                    width: isCirculate ? width*(length+2)+"px" : width*length+"px"
                 }} 
                 className="tab-content"
                 ref={r => this.content = r}
