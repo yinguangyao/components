@@ -12,7 +12,6 @@
   overflow: hidden;
   position: relative;
   border-radius: 5px;
-  box-sizing: border-box;
   width: 100%; }
   .tabs .tab-nav-list {
     display: flex;
@@ -39,28 +38,22 @@
       background: #F0EDE6;
       color: #222222;
       box-shadow: none; }
-  .tabs .tab-content .tab-pane {
-    background: #F0EDE6;
-    border-top: none;
-    text-align: center;
-    font-size: 2rem;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition-property: display;
-    transition-duration: .5s;
-    transition-timing-function: ease-in-out; }
-  .tabs:before {
-    content: "";
-    display: block;
-    left: -2px;
-    top: -2px;
-    bottom: -2px;
-    right: -2px;
-    position: absolute;
-    border: 1px solid #dddad1;
-    z-index: -1; }
+  .tabs .tab-content {
+    overflow: hidden;
+    display: flex; }
+    .tabs .tab-content .tab-pane {
+      flex: 1;
+      background: #F0EDE6;
+      border-top: none;
+      text-align: center;
+      font-size: 2rem;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition-property: display;
+      transition-duration: .5s;
+      transition-timing-function: ease-in-out; }
 * {
   margin: 0;
   padding: 0; }

@@ -26,7 +26,8 @@
     overflow: hidden;
     position: relative;
     border-radius: 5px;
-    box-sizing: border-box;
+    // border: 10px solid rgb(221, 218, 209);
+    // box-sizing: border-box;
     width: 100%;
     .tab-nav-list {
         display: flex;
@@ -54,7 +55,11 @@
         }
     }
     .tab-content {
+        overflow: hidden;
+        display: flex;
+        // width: 900px;
         .tab-pane {
+            flex: 1;
             background: #F0EDE6;
             border-top: none;
             text-align: center;
@@ -65,16 +70,5 @@
             justify-content: center;
             @include animation(display);
         }
-    }
-    &:before {
-        content: "";
-        display: block;
-        left: -2px;
-        top: -2px;
-        bottom: -2px;
-        right: -2px;
-        position: absolute;
-        border: 1px solid rgb(221, 218, 209);
-        z-index: -1;
     }
 }
