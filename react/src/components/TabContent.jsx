@@ -44,7 +44,7 @@ class TabContent extends React.PureComponent {
                 index: i,
             })
         });
-        newChildren = [children[0], ...newChildren, children[length-1]];
+        newChildren = [children[length-1], ...newChildren, children[0]];
         return newChildren
     }
     touchStart = (event) => {

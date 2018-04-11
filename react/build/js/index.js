@@ -403,7 +403,7 @@ var TabContent = function (_React$PureComponent) {
                     index: i
                 });
             });
-            newChildren = [children[0]].concat(_toConsumableArray(newChildren), [children[length - 1]]);
+            newChildren = [children[length - 1]].concat(_toConsumableArray(newChildren), [children[0]]);
             return newChildren;
         };
 
