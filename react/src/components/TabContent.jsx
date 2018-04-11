@@ -34,7 +34,7 @@ class TabContent extends React.PureComponent {
             x: touches.pageX - this.start.x,
             y: touches.pageY - this.start.y
         }
-        this.content.style && (this.content.style.transform = `translate(${this.delta.x-this.state.activeKey*width}px, 0)`)
+        this.content.style && (this.content.style.transform = `translate(${this.delta.x-(this.state.activeKey+1)*width}px, 0)`)
         this.content.style && (this.content.style.transitionDuration = `0ms`)
         this.content.style && (this.content.style.transitionTimingFunction = `ease-out`)
     }
@@ -44,32 +44,46 @@ class TabContent extends React.PureComponent {
             children
         } = this.props
         const length = children.length || 0
-        let nextIndex = 0
+        let nextIndex = 0, speed = 300
         if(Math.abs(this.delta.x) < 100) {
             this.translate(this.state.activeKey, 300)
             return
         }
         if(this.delta.x < 0) {
             if(this.state.activeKey >= length-1) {
-                nextIndex = length-1
+                this.translate(length, speed)
+                setTimeout(() => {
+                    nextIndex = 0
+                    speed = 0
+                    this.props.changeTab(nextIndex)
+                    this.translate(nextIndex, speed)
+                }, speed-10)
+                return
             } else {
                 nextIndex = this.state.activeKey + 1
             }
         } else {
             if(this.state.activeKey <= 0) {
-                nextIndex = 0
+                this.translate(-1, speed)
+                setTimeout(() => {
+                    nextIndex = length - 1
+                    speed = 0
+                    this.props.changeTab(nextIndex)
+                    this.translate(nextIndex, speed)
+                }, speed-10)
+                return
             } else {
                 nextIndex = this.state.activeKey - 1
             }
         }
         this.props.changeTab(nextIndex)
-        this.translate(nextIndex, 300)
+        this.translate(nextIndex, speed)
     }
     translate = (index, speed) => {
         const {
             width
         } = this.props
-        this.content.style && (this.content.style.transform = `translate(${-width*index}px, 0)`)
+        this.content.style && (this.content.style.transform = `translate(${-width*(index+1)}px, 0)`)
         this.content.style && (this.content.style.transitionDuration = `${speed}ms`)
         this.content.style && (this.content.style.transitionTimingFunction = `ease-out`)
     }
@@ -80,10 +94,11 @@ class TabContent extends React.PureComponent {
             children,
             width
         } = this.props
+        const length = children.length || 0
         return (
             <div
                 style={{
-                    width: width*3+"px"
+                    width: width*(length+2)+"px"
                 }} 
                 className="tab-content"
                 ref={r => this.content = r}
@@ -91,6 +106,7 @@ class TabContent extends React.PureComponent {
                 onTouchMove={this.touchMove}
                 onTouchEnd={this.touchEnd}
             >
+                {children[length - 1]}
                 {
                     React.Children.map(children, (child, i) => {
                         return React.cloneElement(child, {
@@ -100,6 +116,7 @@ class TabContent extends React.PureComponent {
                         })
                     })
                 }
+                {children[0]}
             </div>
         )
     }
