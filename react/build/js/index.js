@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 16:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -56,15 +56,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ }),
 
-/***/ 28:
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(29);
+module.exports = __webpack_require__(30);
 
 
 /***/ }),
 
-/***/ 29:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74,13 +74,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(11);
+var _reactDom = __webpack_require__(12);
 
-var _TabPage = __webpack_require__(40);
+var _TabPage = __webpack_require__(41);
 
 var _TabPage2 = _interopRequireDefault(_TabPage);
 
-__webpack_require__(45);
+__webpack_require__(47);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -88,7 +88,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ 40:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102,11 +102,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Tabs = __webpack_require__(41);
+var _Tabs = __webpack_require__(42);
 
 var _Tabs2 = _interopRequireDefault(_Tabs);
 
-var _TabPane = __webpack_require__(44);
+var _TabPane = __webpack_require__(46);
 
 var _TabPane2 = _interopRequireDefault(_TabPane);
 
@@ -150,7 +150,7 @@ exports.default = TabPage;
 
 /***/ }),
 
-/***/ 41:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -166,15 +166,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TabContent = __webpack_require__(42);
+var _TabContent = __webpack_require__(43);
 
 var _TabContent2 = _interopRequireDefault(_TabContent);
 
-var _classnames = __webpack_require__(16);
+var _classnames = __webpack_require__(18);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-__webpack_require__(43);
+__webpack_require__(45);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -250,7 +250,7 @@ var Tabs = function (_React$PureComponent) {
         key: 'getDeviceWidth',
         value: function getDeviceWidth() {
             var rect = document.body.getBoundingClientRect();
-            return rect.right - rect.left;
+            return rect.right - rect.left - 20;
         }
     }, {
         key: 'renderNav',
@@ -301,7 +301,9 @@ var Tabs = function (_React$PureComponent) {
                 onSelect = _props3$onSelect === undefined ? noop : _props3$onSelect,
                 children = _props3.children,
                 _props3$width = _props3.width,
-                width = _props3$width === undefined ? this.getDeviceWidth() - 20 : _props3$width;
+                width = _props3$width === undefined ? this.getDeviceWidth() : _props3$width,
+                _props3$isCirculate = _props3.isCirculate,
+                isCirculate = _props3$isCirculate === undefined ? true : _props3$isCirculate;
             // if(children.length < 1) return null
 
             return _react2.default.createElement(
@@ -317,7 +319,8 @@ var Tabs = function (_React$PureComponent) {
                             activeKey: this.state.activeKey,
                             onSelect: onSelect,
                             width: width,
-                            changeTab: this.changeTab
+                            changeTab: this.changeTab,
+                            isCirculate: isCirculate
                         },
                         children
                     )
@@ -333,7 +336,7 @@ exports.default = Tabs;
 
 /***/ }),
 
-/***/ 42:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -349,7 +352,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = __webpack_require__(17);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -364,6 +373,39 @@ var TabContent = function (_React$PureComponent) {
         _classCallCheck(this, TabContent);
 
         var _this = _possibleConstructorReturn(this, (TabContent.__proto__ || Object.getPrototypeOf(TabContent)).call(this, props));
+
+        _this.handleChildren = function () {
+            var _this$props = _this.props,
+                _this$props$activeKey = _this$props.activeKey,
+                activeKey = _this$props$activeKey === undefined ? 1 : _this$props$activeKey,
+                _this$props$onSelect = _this$props.onSelect,
+                onSelect = _this$props$onSelect === undefined ? noop : _this$props$onSelect,
+                children = _this$props.children,
+                width = _this$props.width,
+                _this$props$isCircula = _this$props.isCirculate,
+                isCirculate = _this$props$isCircula === undefined ? true : _this$props$isCircula;
+
+            var length = children.length || 0;
+            // 如果不循环或者长度小于等于1
+            if (!isCirculate || length <= 1) {
+                return _react2.default.Children.map(children, function (child, i) {
+                    return _react2.default.cloneElement(child, {
+                        key: i,
+                        onSelect: onSelect,
+                        index: i
+                    });
+                });
+            }
+            var newChildren = _react2.default.Children.map(children, function (child, i) {
+                return _react2.default.cloneElement(child, {
+                    key: i,
+                    onSelect: onSelect,
+                    index: i
+                });
+            });
+            newChildren = [children[0]].concat(_toConsumableArray(newChildren), [children[length - 1]]);
+            return newChildren;
+        };
 
         _this.touchStart = function (event) {
             var touches = event.touches[0];
@@ -382,62 +424,39 @@ var TabContent = function (_React$PureComponent) {
                 x: touches.pageX - _this.start.x,
                 y: touches.pageY - _this.start.y
             };
-            _this.content.style && (_this.content.style.transform = "translate(" + (_this.delta.x - (_this.state.activeKey + 1) * width) + "px, 0)");
-            _this.content.style && (_this.content.style.transitionDuration = "0ms");
-            _this.content.style && (_this.content.style.transitionTimingFunction = "ease-out");
+            var dist = _this.delta.x - (_this.state.activeKey + 1) * width;
+            _this.translate(dist, 0);
         };
 
         _this.touchEnd = function (e) {
-            var _this$props = _this.props,
-                _this$props$changeTab = _this$props.changeTab,
-                changeTab = _this$props$changeTab === undefined ? noop : _this$props$changeTab,
-                children = _this$props.children;
-
-            var length = children.length || 0;
-            var nextIndex = 0,
-                speed = 300;
             if (Math.abs(_this.delta.x) < 100) {
-                _this.translate(_this.state.activeKey, 300);
+                _this.to(_this.state.activeKey, 300);
                 return;
             }
-            if (_this.delta.x < 0) {
-                if (_this.state.activeKey >= length - 1) {
-                    _this.translate(length, speed);
-                    _this.props.changeTab(0);
-                    setTimeout(function () {
-                        nextIndex = 0;
-                        speed = 0;
-                        // this.props.changeTab(nextIndex)
-                        _this.translate(nextIndex, speed);
-                    }, speed - 10);
-                    return;
-                } else {
-                    nextIndex = _this.state.activeKey + 1;
-                }
-            } else {
-                if (_this.state.activeKey <= 0) {
-                    _this.translate(-1, speed);
-                    _this.props.changeTab(length - 1);
-                    setTimeout(function () {
-                        nextIndex = length - 1;
-                        speed = 0;
-                        _this.translate(nextIndex, speed);
-                    }, speed - 10);
-                    return;
-                } else {
-                    nextIndex = _this.state.activeKey - 1;
-                }
-            }
-            _this.props.changeTab(nextIndex);
-            _this.translate(nextIndex, speed);
+            _this.delta.x < 0 ? _this.next() : _this.prev();
         };
 
-        _this.translate = function (index, speed) {
-            var width = _this.props.width;
+        _this.to = function (index, speed, tabIndex) {
+            var _this$props2 = _this.props,
+                width = _this$props2.width,
+                isCirculate = _this$props2.isCirculate;
 
-            _this.content.style && (_this.content.style.transform = "translate(" + -width * (index + 1) + "px, 0)");
-            _this.content.style && (_this.content.style.transitionDuration = speed + "ms");
-            _this.content.style && (_this.content.style.transitionTimingFunction = "ease-out");
+            if (tabIndex === void 0) {
+                tabIndex = index;
+            }
+            // index+1是因为循环下两边会多出两个
+            var dist = isCirculate ? -width * (index + 1) : -width * index || 0;
+            _this.translate(dist, speed);
+            _this.props.changeTab(tabIndex);
+        };
+
+        _this.translate = function () {
+            var dist = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 300;
+
+            _this.content.style && (_this.content.style.transform = 'translate(' + dist + 'px, 0)');
+            _this.content.style && (_this.content.style.transitionDuration = speed + 'ms');
+            _this.content.style && (_this.content.style.transitionTimingFunction = 'ease-out');
         };
 
         _this.state = {
@@ -447,12 +466,12 @@ var TabContent = function (_React$PureComponent) {
     }
 
     _createClass(TabContent, [{
-        key: "componentDidMount",
+        key: 'componentDidMount',
         value: function componentDidMount() {
-            this.translate(this.props.activeKey);
+            this.to(this.props.activeKey, 0);
         }
     }, {
-        key: "componentWillReceiveProps",
+        key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
             if (this.props.activeKey !== nextProps.activeKey) {
                 this.setState({
@@ -461,42 +480,92 @@ var TabContent = function (_React$PureComponent) {
             }
         }
     }, {
-        key: "render",
-        value: function render() {
+        key: 'next',
+        value: function next() {
             var _this2 = this;
 
             var _props = this.props,
-                _props$activeKey = _props.activeKey,
-                activeKey = _props$activeKey === undefined ? 1 : _props$activeKey,
-                _props$onSelect = _props.onSelect,
-                onSelect = _props$onSelect === undefined ? noop : _props$onSelect,
+                _props$changeTab = _props.changeTab,
+                changeTab = _props$changeTab === undefined ? noop : _props$changeTab,
                 children = _props.children,
-                width = _props.width;
+                isCirculate = _props.isCirculate;
+
+            var length = children.length || 0;
+            var speed = 300;
+            // 判断临界点（如果是循环）
+            if (isCirculate && this.state.activeKey >= length - 1) {
+                this.to(length, speed, 0);
+                setTimeout(function () {
+                    _this2.to(0, 0);
+                }, speed);
+                // 判断临界点（如果不是循环）
+            } else if (this.state.activeKey >= length - 1) {
+                this.to(length - 1, speed);
+                // 如果不是临界点
+            } else {
+                this.to(this.state.activeKey + 1);
+            }
+        }
+    }, {
+        key: 'prev',
+        value: function prev() {
+            var _this3 = this;
+
+            var _props2 = this.props,
+                _props2$changeTab = _props2.changeTab,
+                changeTab = _props2$changeTab === undefined ? noop : _props2$changeTab,
+                children = _props2.children,
+                isCirculate = _props2.isCirculate;
+
+            var length = children.length || 0;
+            var speed = 300;
+            // 判断临界点（如果是循环）
+            if (isCirculate && this.state.activeKey <= 0) {
+                this.to(-1, speed, length - 1);
+                setTimeout(function () {
+                    _this3.to(length - 1, 0);
+                }, speed);
+                // 判断临界点（如果不是循环）
+            } else if (this.state.activeKey <= 0) {
+                this.to(0, speed);
+                // 如果不是临界点
+            } else {
+                this.to(this.state.activeKey - 1, speed);
+            }
+        }
+        // 要滑动到的index, 速度speed, 展示的index
+
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var _props3 = this.props,
+                _props3$activeKey = _props3.activeKey,
+                activeKey = _props3$activeKey === undefined ? 1 : _props3$activeKey,
+                _props3$onSelect = _props3.onSelect,
+                onSelect = _props3$onSelect === undefined ? noop : _props3$onSelect,
+                children = _props3.children,
+                width = _props3.width;
 
             var length = children.length || 0;
             return _react2.default.createElement(
-                "div",
+                'div',
                 {
                     style: {
                         width: width * (length + 2) + "px"
                     },
-                    className: "tab-content",
+                    className: 'tab-content',
                     ref: function ref(r) {
-                        return _this2.content = r;
+                        return _this4.content = r;
                     },
                     onTouchStart: this.touchStart,
-                    onTouchMove: this.touchMove,
+                    onTouchMove: function onTouchMove(event) {
+                        return _lodash2.default.throttle(_this4.touchMove, 50)(event);
+                    },
                     onTouchEnd: this.touchEnd
                 },
-                children[length - 1],
-                _react2.default.Children.map(children, function (child, i) {
-                    return _react2.default.cloneElement(child, {
-                        key: i,
-                        onSelect: onSelect,
-                        index: i
-                    });
-                }),
-                children[0]
+                this.handleChildren()
             );
         }
     }]);
@@ -508,14 +577,14 @@ exports.default = TabContent;
 
 /***/ }),
 
-/***/ 43:
+/***/ 45:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 44:
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -531,7 +600,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(16);
+var _classnames = __webpack_require__(18);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -598,11 +667,11 @@ exports.default = TabPane;
 
 /***/ }),
 
-/***/ 45:
+/***/ 47:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[28]);
+},[29]);

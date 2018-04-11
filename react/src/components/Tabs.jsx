@@ -38,7 +38,7 @@ class Tabs extends React.PureComponent {
     }
     getDeviceWidth() {
         const rect = document.body.getBoundingClientRect();
-        return rect.right - rect.left
+        return rect.right - rect.left - 20
     }
     changeTab = (currentKey) => {
         const {
@@ -82,7 +82,8 @@ class Tabs extends React.PureComponent {
             defaultKey = 1,
             onSelect = noop,
             children,
-            width = this.getDeviceWidth() - 20
+            width = this.getDeviceWidth(),
+            isCirculate = true
         } = this.props
         // if(children.length < 1) return null
         return (
@@ -94,6 +95,7 @@ class Tabs extends React.PureComponent {
                         onSelect={onSelect}
                         width={width}
                         changeTab={this.changeTab}
+                        isCirculate={isCirculate}
                     >
                         {children}
                     </TabContent>

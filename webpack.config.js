@@ -11,7 +11,8 @@ const config = {
             "react",
             "redux",
             "react-redux",
-            "react-dom"
+            "react-dom",
+            "lodash"
         ]
     },
     "resolve": {

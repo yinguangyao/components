@@ -1,4 +1,6 @@
 import React from 'react'
+import _ from 'lodash'
+
 class TabContent extends React.PureComponent {
     constructor(props) {
         super(props)
@@ -7,7 +9,7 @@ class TabContent extends React.PureComponent {
         }
     }
     componentDidMount() {
-        this.translate(this.props.activeKey);
+        this.to(this.props.activeKey, 0);
     }
     componentWillReceiveProps(nextProps) {
         if(this.props.activeKey !== nextProps.activeKey) {
@@ -15,6 +17,35 @@ class TabContent extends React.PureComponent {
                 activeKey: nextProps.activeKey
             })
         }
+    }
+    handleChildren = () => {
+        const {
+            activeKey = 1,
+            onSelect = noop,
+            children,
+            width,
+            isCirculate = true
+        } = this.props
+        const length = children.length || 0
+        // 如果不循环或者长度小于等于1
+        if(!isCirculate || length <= 1) {
+            return React.Children.map(children, (child, i) => {
+                return React.cloneElement(child, {
+                    key: i,
+                    onSelect,
+                    index: i,
+                })
+            })
+        }
+        let newChildren = React.Children.map(children, (child, i) => {
+            return React.cloneElement(child, {
+                key: i,
+                onSelect,
+                index: i,
+            })
+        });
+        newChildren = [children[0], ...newChildren, children[length-1]];
+        return newChildren
     }
     touchStart = (event) => {
         const touches = event.touches[0]
@@ -34,57 +65,76 @@ class TabContent extends React.PureComponent {
             x: touches.pageX - this.start.x,
             y: touches.pageY - this.start.y
         }
-        this.content.style && (this.content.style.transform = `translate(${this.delta.x-(this.state.activeKey+1)*width}px, 0)`)
-        this.content.style && (this.content.style.transitionDuration = `0ms`)
-        this.content.style && (this.content.style.transitionTimingFunction = `ease-out`)
+        const dist = this.delta.x - (this.state.activeKey + 1) * width
+        this.translate(dist, 0)
     }
     touchEnd = (e) => {
-        const {
-            changeTab = noop,
-            children
-        } = this.props
-        const length = children.length || 0
-        let nextIndex = 0, speed = 300
         if(Math.abs(this.delta.x) < 100) {
-            this.translate(this.state.activeKey, 300)
+            this.to(this.state.activeKey, 300)
             return
         }
-        if(this.delta.x < 0) {
-            if(this.state.activeKey >= length-1) {
-                this.translate(length, speed)
-                this.props.changeTab(0)
-                setTimeout(() => {
-                    nextIndex = 0
-                    speed = 0
-                    // this.props.changeTab(nextIndex)
-                    this.translate(nextIndex, speed)
-                }, speed-10)
-                return
-            } else {
-                nextIndex = this.state.activeKey + 1
-            }
-        } else {
-            if(this.state.activeKey <= 0) {
-                this.translate(-1, speed)
-                this.props.changeTab(length - 1)
-                setTimeout(() => {
-                    nextIndex = length - 1
-                    speed = 0
-                    this.translate(nextIndex, speed)
-                }, speed-10)
-                return
-            } else {
-                nextIndex = this.state.activeKey - 1
-            }
-        }
-        this.props.changeTab(nextIndex)
-        this.translate(nextIndex, speed)
+        this.delta.x < 0 ? this.next() : this.prev();
     }
-    translate = (index, speed) => {
+    next() {
         const {
-            width
+            changeTab = noop,
+            children,
+            isCirculate
         } = this.props
-        this.content.style && (this.content.style.transform = `translate(${-width*(index+1)}px, 0)`)
+        const length = children.length || 0
+        const speed = 300
+        // 判断临界点（如果是循环）
+        if(isCirculate && this.state.activeKey >= length-1) {
+            this.to(length, speed, 0);
+            setTimeout(() => {
+                this.to(0, 0)
+            }, speed)
+        // 判断临界点（如果不是循环）
+        } else if(this.state.activeKey >= length-1) {
+            this.to(length - 1, speed);
+        // 如果不是临界点
+        } else {
+            this.to(this.state.activeKey + 1);
+        }
+    }
+    prev() {
+        const {
+            changeTab = noop,
+            children,
+            isCirculate
+        } = this.props
+        const length = children.length || 0
+        const speed = 300
+        // 判断临界点（如果是循环）
+        if(isCirculate && this.state.activeKey <= 0) {
+            this.to(-1, speed, length - 1);
+            setTimeout(() => {
+                this.to(length - 1, 0)
+            }, speed)
+        // 判断临界点（如果不是循环）
+        } else if(this.state.activeKey <= 0){
+            this.to(0, speed);
+        // 如果不是临界点
+        } else {
+            this.to(this.state.activeKey - 1, speed);
+        }
+    }
+    // 要滑动到的index, 速度speed, 展示的index
+    to = (index, speed, tabIndex) => {
+        const {
+            width,
+            isCirculate
+        } = this.props
+        if(tabIndex === void 0) {
+            tabIndex = index
+        }
+        // index+1是因为循环下两边会多出两个
+        const dist = isCirculate ? -width * (index+1) : -width * index || 0
+        this.translate(dist, speed);
+        this.props.changeTab(tabIndex);
+    }
+    translate = (dist = 0, speed = 300) => {
+        this.content.style && (this.content.style.transform = `translate(${dist}px, 0)`)
         this.content.style && (this.content.style.transitionDuration = `${speed}ms`)
         this.content.style && (this.content.style.transitionTimingFunction = `ease-out`)
     }
@@ -104,20 +154,10 @@ class TabContent extends React.PureComponent {
                 className="tab-content"
                 ref={r => this.content = r}
                 onTouchStart={this.touchStart}
-                onTouchMove={this.touchMove}
+                onTouchMove={(event) => _.throttle(this.touchMove, 50)(event)}
                 onTouchEnd={this.touchEnd}
             >
-                {children[length - 1]}
-                {
-                    React.Children.map(children, (child, i) => {
-                        return React.cloneElement(child, {
-                            key: i,
-                            onSelect,
-                            index: i,
-                        })
-                    })
-                }
-                {children[0]}
+                {this.handleChildren()}
             </div>
         )
     }

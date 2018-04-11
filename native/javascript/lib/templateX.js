@@ -39,3 +39,10 @@
     }
     root.templateX = templateX
 }.call(this))
+
+function isObj(obj) {
+    if(Object.prototype.toString.call(obj) === "[object Object]" && Object.keys(obj).length === 0) {
+        return true
+    }
+    return false   
+}
