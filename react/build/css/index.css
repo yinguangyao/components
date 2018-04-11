@@ -10,7 +10,7 @@
   background: repeating-linear-gradient(-45deg, #D7D3C7, #D7D3C7 2px, #CECABE 2px, #CECABE 4px);
   padding: 10px;
   overflow: hidden;
-  position: absolute;
+  position: relative;
   border-radius: 5px;
   box-sizing: border-box;
   width: 100%; }
