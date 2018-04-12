@@ -29,7 +29,6 @@ class Tabs extends React.PureComponent {
             activeKey: currentKey
         })
         onSelect(currentKey);
-        console.log("you have selected current key: " + currentKey);
     }
     renderNav() {
         const {
@@ -50,7 +49,6 @@ class Tabs extends React.PureComponent {
                                 className={classnames("tab-nav-item", {"cur": this.state.activeKey == currentKey})}
                                 key={currentKey}
                                 onTouchStart={() => this.changeTab(currentKey)}
-                                onTransitionEnd = {() => { console.log("end")}}
                             >{title}</li>
                         )
                     })

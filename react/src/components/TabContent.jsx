@@ -28,7 +28,6 @@ class TabContent extends React.PureComponent {
                 }} 
                 className="tab-content"
                 ref={r => {
-                    {/* debugger */}
                     getRef(r)
                 }}
                 onTouchStart={touchStart}

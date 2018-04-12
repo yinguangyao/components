@@ -10,18 +10,25 @@ const Touch = (WrappedComponent) => {
         static displayName = `HOC(${getDisplayName(WrappedComponent)})`
         constructor(props) {
             super(props);
+            this.indexMapping = []
+            this.state = {
+                activeIndex: 0
+            }
         }
         // 第一次进来的时候初始化，跳转到对应的tab位置
         async componentDidMount () {
             const {
                 activeKey = 0
-            } = this.props
+            } = this.props      
             await this.initActiveIndex(activeKey);
             this.to(this.getIndexByKey(activeKey), 0);
         }
         async componentWillReceiveProps(nextProps) {
-            if(this.props.activeKey !== nextProps.activeKey) {
-                await this.initActiveIndex(nextProps.activeKey);
+            const {
+                activeIndex = 0
+            } = this.state
+            if(this.indexMapping[activeIndex] !== nextProps.activeKey) {
+                this.to(this.getIndexByKey(nextProps.activeKey), 300);
             }
         }
         // 这里主要是对传入的key进行mapping，转化为index的形式存到state中，便于我们之后操作
@@ -162,17 +169,28 @@ const Touch = (WrappedComponent) => {
             }
         }
         // 要滑动到的index, 速度speed, 头部展示的index
-        to = (index, speed, tabIndex) => {
+        to = async (index, speed, tabIndex) => {
             const {
                 width,
-                isCirculate
+                isCirculate,
+                children
             } = this.props
-            if(tabIndex === void 0) {
-                tabIndex = index
+            let availIndex = index
+            const length = children.length || 0
+            if(index < 0) {
+                availIndex = length - 1
             }
+            if(index > length - 1) {
+                availIndex = 0
+            }
+            if(tabIndex === void 0) {
+                tabIndex = availIndex
+            }
+            const key = this.indexMapping[availIndex];
             const tabKey = this.indexMapping[tabIndex];
             // index+1是因为循环下两边会多出两个
             const dist = isCirculate ? -width * (index+1) : -width * index || 0
+            await this.initActiveIndex(key);
             this.translate(dist, speed);
             this.props.changeTab(tabKey);
         }
