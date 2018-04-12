@@ -20,7 +20,7 @@ class TabContent extends React.PureComponent {
             touchEnd = noop
         } = this.props
         const length = children.length || 0
-        const wrappedWidth = isCirculate ? `${width * (length + 2)}px` : `${width * length}px`
+        const wrappedWidth = isCirculate ? `${width * (length + 2)}px` : `${width * length}"px`
         return (
             <div
                 style={{

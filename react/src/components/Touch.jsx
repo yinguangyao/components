@@ -10,20 +10,27 @@ const Touch = (WrappedComponent) => {
         static displayName = `HOC(${getDisplayName(WrappedComponent)})`
         constructor(props) {
             super(props);
+            this.indexMapping = []
+            this.state = {
+                activeIndex: 0
+            }
         }
         // 第一次进来的时候初始化，跳转到对应的tab位置
         async componentDidMount () {
             const {
-                activeKey = 0
+                defaultKey = 0
             } = this.props
             await this.initActiveIndex(activeKey);
-            this.to(this.getIndexByKey(activeKey), 0);
+            this.to(this.getIndexByKey(defaultKey), 0);
         }
-        async componentWillReceiveProps(nextProps) {
-            if(this.props.activeKey !== nextProps.activeKey) {
-                await this.initActiveIndex(nextProps.activeKey);
-            }
-        }
+        // async componentWillReceiveProps(nextProps) {
+        //     const {
+        //         activeIndex = 0
+        //     } = this.state
+        //     if(this.indexMapping[activeIndex] !== nextProps.activeKey) {
+        //         this.to(this.getIndexByKey(nextProps.activeKey), 300);
+        //     }
+        // }
         // 这里主要是对传入的key进行mapping，转化为index的形式存到state中，便于我们之后操作
         async initActiveIndex(activeKey) {
             this.indexMapping = this.getIndexMapping();
@@ -78,6 +85,10 @@ const Touch = (WrappedComponent) => {
             newChildren = [children[length-1], ...newChildren, children[0]];
             return newChildren
         }
+        getDeviceWidth() {
+            const rect = document.body.getBoundingClientRect();
+            return rect.right - rect.left
+        }
         touchStart = (event) => {
             const touches = event.touches[0]
             this.start = {
@@ -88,7 +99,7 @@ const Touch = (WrappedComponent) => {
         touchMove = (event) => {
             const touches = event.touches[0]
             const {
-                width,
+                width = this.getDeviceWidth(),
                 isCirculate,
                 children
             } = this.props
@@ -119,7 +130,6 @@ const Touch = (WrappedComponent) => {
         }
         next() {
             const {
-                changeTab = noop,
                 children,
                 isCirculate
             } = this.props
@@ -141,7 +151,6 @@ const Touch = (WrappedComponent) => {
         }
         prev() {
             const {
-                changeTab = noop,
                 children,
                 isCirculate
             } = this.props
@@ -162,19 +171,22 @@ const Touch = (WrappedComponent) => {
             }
         }
         // 要滑动到的index, 速度speed, 头部展示的index
-        to = (index, speed, tabIndex) => {
+        to = async (index, speed, tabIndex) => {
             const {
                 width,
-                isCirculate
+                isCirculate,
+                getCurrentKey = noop
             } = this.props
             if(tabIndex === void 0) {
                 tabIndex = index
             }
+            const key = this.indexMapping[index];
             const tabKey = this.indexMapping[tabIndex];
             // index+1是因为循环下两边会多出两个
             const dist = isCirculate ? -width * (index+1) : -width * index || 0
+            await this.initActiveIndex(key);
             this.translate(dist, speed);
-            this.props.changeTab(tabKey);
+            getCurrentKey(tabKey);
         }
         translate = (dist = 0, speed = 300) => {
             this.content.style && (this.content.style.transform = `translate(${dist}px, 0)`)
@@ -188,7 +200,8 @@ const Touch = (WrappedComponent) => {
                 touchMove: this.touchMove,
                 touchEnd: this.touchEnd,
                 handleChildren: this.handleChildren,
-                getRef: this.getRef
+                getRef: this.getRef,
+                activeKey: this.indexMapping[this.state.activeIndex]
             }
             return <WrappedComponent {...props} />
         }

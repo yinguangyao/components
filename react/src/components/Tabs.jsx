@@ -1,13 +1,16 @@
 import React from 'react'
-import TabContent from './TabContent'
 import classnames from 'classnames'
+import _ from 'lodash'
+
+import Touch from './Touch'
 import './Tabs.scss'
+
 function noop() {}
 class Tabs extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            activeKey: this.props.defaultKey || 0
+            activeKey: this.props.activeKey || 0
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -58,6 +61,36 @@ class Tabs extends React.PureComponent {
             </ul>
         )
     }
+    renderContent() {
+        const {
+            children,
+            width = this.getDeviceWidth(),
+            isCirculate,
+            getRef = noop,
+            handleChildren = noop,
+            touchStart = noop,
+            touchMove = noop,
+            touchEnd = noop
+        } = this.props
+        const length = children.length || 0
+        const wrappedWidth = isCirculate ? `${width * (length + 2)}px` : `${width * length}px`
+        return (
+            <div
+                style={{
+                    width: wrappedWidth
+                }} 
+                className="tab-content"
+                ref={r => {
+                    getRef(r)
+                }}
+                onTouchStart={touchStart}
+                onTouchMove={event => _.throttle(touchMove, 50)(event)}
+                onTouchEnd={touchEnd}
+            >
+                {handleChildren()}
+            </div>
+        )
+    }
     render() {
         const {
             defaultKey = 0,
@@ -70,18 +103,10 @@ class Tabs extends React.PureComponent {
             <div className="tabs">
                 <div style={{overflow: "hidden"}}>
                     {this.renderNav()}
-                    <TabContent 
-                        activeKey={this.state.activeKey}
-                        onSelect={onSelect}
-                        width={width}
-                        changeTab={this.changeTab}
-                        isCirculate={isCirculate}
-                    >
-                        {children}
-                    </TabContent>
+                    {this.renderContent()}
                 </div>
             </div>
         )
     }
 }
-export default Tabs
+export default Touch(Tabs)
