@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import TabPage from './pages/TabPage'
+import RootRouter from './router/Router'
 import './App.scss'
 render(
-    <TabPage />,
+    <RootRouter />,
     document.getElementById("app")
 )

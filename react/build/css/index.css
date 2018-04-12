@@ -1,3 +1,16 @@
+#main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  #main ul {
+    margin-left: 30px; }
+  #main ul, #main li {
+    list-style: none; }
+  #main li {
+    margin: 20px; }
+  #main li a {
+    text-decoration: none; }
 @charset "UTF-8";
 /* 这个是组件内部的样式 */
 .show {
