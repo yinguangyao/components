@@ -17,25 +17,6 @@ class Tabs extends React.PureComponent {
             })
         }
     }
-    // 这里对currentKey做了mapping，便于以后计算
-    getIndexMapping() {
-        const {
-            defaultKey = 0,
-            onSelect = noop,
-            children
-        } = this.props
-        const mapping = {
-            activeIndex: "",
-            keys: []
-        }
-        React.Children.map(children, (child, i) => {
-            if(i == this.state.activeKey) {
-                mapping.activeIndex = i
-            }
-            mapping.keys.push(child.props && child.props.currentKey);
-        })
-        return mapping;
-    }
     getDeviceWidth() {
         const rect = document.body.getBoundingClientRect();
         return rect.right - rect.left - 20
@@ -79,13 +60,12 @@ class Tabs extends React.PureComponent {
     }
     render() {
         const {
-            defaultKey = 1,
+            defaultKey = 0,
             onSelect = noop,
             children,
             width = this.getDeviceWidth(),
             isCirculate = true
         } = this.props
-        // if(children.length < 1) return null
         return (
             <div className="tabs">
                 <div style={{overflow: "hidden"}}>
