@@ -10,7 +10,8 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -22,12 +23,12 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(59)('wks');
 var uid = __webpack_require__(37);
-var Symbol = __webpack_require__(4).Symbol;
+var Symbol = __webpack_require__(5).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function (name) {
@@ -39,11 +40,10 @@ $exports.store = store;
 
 
 /***/ }),
-/* 6 */,
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var core = __webpack_require__(3);
 var ctx = __webpack_require__(24);
 var hide = __webpack_require__(19);
@@ -928,7 +928,7 @@ module.exports = function (it) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return components; });
 /* unused harmony export route */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return routes; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
 
 
@@ -1200,7 +1200,7 @@ module.exports = Object.keys || function keys(O) {
 
 var def = __webpack_require__(9).f;
 var has = __webpack_require__(18);
-var TAG = __webpack_require__(5)('toStringTag');
+var TAG = __webpack_require__(6)('toStringTag');
 
 module.exports = function (it, tag, stat) {
   if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
@@ -1357,7 +1357,7 @@ function mapAsync(array, work, callback) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_create_react_class__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_create_react_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_create_react_class__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getRouteParams__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ContextUtils__ = __webpack_require__(51);
@@ -1483,7 +1483,7 @@ var RouterContext = __WEBPACK_IMPORTED_MODULE_2_create_react_class___default()({
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = ContextProvider;
 /* harmony export (immutable) */ __webpack_exports__["b"] = ContextSubscriber;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
 
 
@@ -1608,7 +1608,7 @@ function ContextSubscriber(name) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return routerShape; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return locationShape; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
 
 
@@ -1983,7 +1983,7 @@ module.exports = function (key) {
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
 module.exports = function (key) {
@@ -1996,7 +1996,7 @@ module.exports = function (key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(14);
-var document = __webpack_require__(4).document;
+var document = __webpack_require__(5).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -2131,14 +2131,14 @@ module.exports = (
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.f = __webpack_require__(5);
+exports.f = __webpack_require__(6);
 
 
 /***/ }),
 /* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var core = __webpack_require__(3);
 var LIBRARY = __webpack_require__(42);
 var wksExt = __webpack_require__(67);
@@ -2599,7 +2599,7 @@ function assignRouterState(router, _ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_create_react_class__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_create_react_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_create_react_class__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
@@ -2744,7 +2744,7 @@ var Link = __WEBPACK_IMPORTED_MODULE_1_create_react_class___default()({
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_create_react_class__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
@@ -3304,7 +3304,7 @@ var Iterators = __webpack_require__(31);
 var $iterCreate = __webpack_require__(179);
 var setToStringTag = __webpack_require__(44);
 var getPrototypeOf = __webpack_require__(92);
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
@@ -3412,7 +3412,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 /* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var document = __webpack_require__(4).document;
+var document = __webpack_require__(5).document;
 module.exports = document && document.documentElement;
 
 
@@ -3421,10 +3421,10 @@ module.exports = document && document.documentElement;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(183);
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var hide = __webpack_require__(19);
 var Iterators = __webpack_require__(31);
-var TO_STRING_TAG = __webpack_require__(5)('toStringTag');
+var TO_STRING_TAG = __webpack_require__(6)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
   'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
@@ -3488,7 +3488,7 @@ exports.f = __webpack_require__(15) ? gOPD : function getOwnPropertyDescriptor(O
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = __webpack_require__(32);
-var TAG = __webpack_require__(5)('toStringTag');
+var TAG = __webpack_require__(6)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
 
@@ -3535,7 +3535,7 @@ module.exports = function (iterator, fn, value, entries) {
 
 // check on default Array iterator
 var Iterators = __webpack_require__(31);
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var ArrayProto = Array.prototype;
 
 module.exports = function (it) {
@@ -3548,7 +3548,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(104);
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var Iterators = __webpack_require__(31);
 module.exports = __webpack_require__(3).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR]
@@ -3564,7 +3564,7 @@ module.exports = __webpack_require__(3).getIteratorMethod = function (it) {
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject = __webpack_require__(10);
 var aFunction = __webpack_require__(38);
-var SPECIES = __webpack_require__(5)('species');
+var SPECIES = __webpack_require__(6)('species');
 module.exports = function (O, D) {
   var C = anObject(O).constructor;
   var S;
@@ -3580,7 +3580,7 @@ var ctx = __webpack_require__(24);
 var invoke = __webpack_require__(218);
 var html = __webpack_require__(99);
 var cel = __webpack_require__(60);
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var process = global.process;
 var setTask = global.setImmediate;
 var clearTask = global.clearImmediate;
@@ -3697,7 +3697,7 @@ module.exports = function (C, x) {
 /* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var SAFE_CLOSING = false;
 
 try {
@@ -3890,7 +3890,7 @@ exports.default = RootRouter;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_create_react_class__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_create_react_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_create_react_class__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__InternalPropTypes__ = __webpack_require__(29);
@@ -5814,7 +5814,7 @@ function withRouter(WrappedComponent, options) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_create_react_class__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routerWarning__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(2);
@@ -5870,7 +5870,7 @@ var IndexRedirect = __WEBPACK_IMPORTED_MODULE_0_create_react_class___default()({
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_create_react_class__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routerWarning__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(2);
@@ -5927,7 +5927,7 @@ var IndexRoute = __WEBPACK_IMPORTED_MODULE_0_create_react_class___default()({
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_create_react_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_create_react_class__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
@@ -7137,7 +7137,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var TabPage = function TabPage() {
     return _react2.default.createElement(
         _Tabs2.default,
-        { defaultKey: "b", isCirculate: true },
+        {
+            defaultKey: "b",
+            isCirculate: true,
+            auto: 2000,
+            speed: 300
+        },
         _react2.default.createElement(
             _TabPane2.default,
             { currentKey: "a", title: '\u9009\u9879\u53611' },
@@ -7234,7 +7239,6 @@ var Tabs = function (_React$PureComponent) {
                 activeKey: currentKey
             });
             onSelect(currentKey);
-            console.log("you have selected current key: " + currentKey);
         };
 
         _this.state = {
@@ -7287,9 +7291,6 @@ var Tabs = function (_React$PureComponent) {
                             key: currentKey,
                             onTouchStart: function onTouchStart() {
                                 return _this2.changeTab(currentKey);
-                            },
-                            onTransitionEnd: function onTransitionEnd() {
-                                console.log("end");
                             }
                         },
                         title
@@ -7300,6 +7301,8 @@ var Tabs = function (_React$PureComponent) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
             var _props2 = this.props,
                 _props2$defaultKey = _props2.defaultKey,
                 defaultKey = _props2$defaultKey === undefined ? 0 : _props2$defaultKey,
@@ -7309,7 +7312,11 @@ var Tabs = function (_React$PureComponent) {
                 _props2$width = _props2.width,
                 width = _props2$width === undefined ? this.getDeviceWidth() : _props2$width,
                 _props2$isCirculate = _props2.isCirculate,
-                isCirculate = _props2$isCirculate === undefined ? true : _props2$isCirculate;
+                isCirculate = _props2$isCirculate === undefined ? true : _props2$isCirculate,
+                _props2$speed = _props2.speed,
+                speed = _props2$speed === undefined ? 300 : _props2$speed,
+                _props2$auto = _props2.auto,
+                auto = _props2$auto === undefined ? 2000 : _props2$auto;
 
             return _react2.default.createElement(
                 'div',
@@ -7322,9 +7329,12 @@ var Tabs = function (_React$PureComponent) {
                         _TabContent2.default,
                         {
                             activeKey: this.state.activeKey,
-                            onSelect: onSelect,
                             width: width,
-                            changeTab: this.changeTab,
+                            onChange: function onChange(prevKey, currentKey) {
+                                _this3.changeTab(currentKey);
+                            },
+                            speed: speed,
+                            auto: auto,
                             isCirculate: isCirculate
                         },
                         children
@@ -7453,7 +7463,7 @@ var setToStringTag = __webpack_require__(44);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(19)(IteratorPrototype, __webpack_require__(5)('iterator'), function () { return this; });
+__webpack_require__(19)(IteratorPrototype, __webpack_require__(6)('iterator'), function () { return this; });
 
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -7603,7 +7613,7 @@ module.exports = __webpack_require__(3).Symbol;
 "use strict";
 
 // ECMAScript 6 symbols shim
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var has = __webpack_require__(18);
 var DESCRIPTORS = __webpack_require__(15);
 var $export = __webpack_require__(7);
@@ -7613,7 +7623,7 @@ var $fails = __webpack_require__(25);
 var shared = __webpack_require__(59);
 var setToStringTag = __webpack_require__(44);
 var uid = __webpack_require__(37);
-var wks = __webpack_require__(5);
+var wks = __webpack_require__(6);
 var wksExt = __webpack_require__(67);
 var wksDefine = __webpack_require__(68);
 var enumKeys = __webpack_require__(190);
@@ -8202,6 +8212,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(4);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getDisplayName = function getDisplayName(WrappedComponent) {
@@ -8255,12 +8269,22 @@ var Touch = function Touch(WrappedComponent) {
                 return newChildren;
             };
 
+            _this.auto = function () {
+                var auto = _this.props.auto;
+
+                _this.autoTimeout && clearInterval(_this.autoTimeout);
+                _this.autoTimeout = setInterval(function () {
+                    _this.next();
+                }, auto);
+            };
+
             _this.touchStart = function (event) {
                 var touches = event.touches[0];
                 _this.start = {
                     x: touches.pageX,
                     y: touches.pageY
                 };
+                _this.autoTimeout && clearInterval(_this.autoTimeout);
             };
 
             _this.touchMove = function (event) {
@@ -8285,23 +8309,178 @@ var Touch = function Touch(WrappedComponent) {
                 _this.translate(dist, 0);
             };
 
-            _this.touchEnd = function (e) {
-                if (Math.abs(_this.delta.x) < 100) {
-                    _this.to(_this.state.activeIndex, 300);
-                    return;
-                }
-                _this.delta.x < 0 ? _this.next() : _this.prev();
-            };
-
-            _this.to = function () {
-                var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(index, speed, tabIndex) {
-                    var _this$props3, width, isCirculate, children, availIndex, length, key, tabKey, dist;
-
+            _this.touchEnd = function () {
+                var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(e) {
+                    var speed;
                     return _regenerator2.default.wrap(function _callee$(_context) {
                         while (1) {
                             switch (_context.prev = _context.next) {
                                 case 0:
-                                    _this$props3 = _this.props, width = _this$props3.width, isCirculate = _this$props3.isCirculate, children = _this$props3.children;
+                                    speed = _this.props.speed;
+
+                                    if (!(Math.abs(_this.delta.x) < 100)) {
+                                        _context.next = 5;
+                                        break;
+                                    }
+
+                                    _context.next = 4;
+                                    return _this.to(_this.state.activeIndex, speed);
+
+                                case 4:
+                                    return _context.abrupt('return');
+
+                                case 5:
+                                    _this.delta.x < 0 ? _this.next() : _this.prev();
+
+                                case 6:
+                                case 'end':
+                                    return _context.stop();
+                            }
+                        }
+                    }, _callee, _this2);
+                }));
+
+                return function (_x) {
+                    return _ref.apply(this, arguments);
+                };
+            }();
+
+            _this.next = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+                var _this$props3, children, isCirculate, speed, length;
+
+                return _regenerator2.default.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _this$props3 = _this.props, children = _this$props3.children, isCirculate = _this$props3.isCirculate, speed = _this$props3.speed;
+                                length = children.length || 0;
+                                // 判断临界点（如果是循环）
+
+                                if (!(isCirculate && _this.state.activeIndex >= length - 1)) {
+                                    _context3.next = 8;
+                                    break;
+                                }
+
+                                _context3.next = 5;
+                                return _this.to(length, speed, 0);
+
+                            case 5:
+                                setTimeout((0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+                                    return _regenerator2.default.wrap(function _callee2$(_context2) {
+                                        while (1) {
+                                            switch (_context2.prev = _context2.next) {
+                                                case 0:
+                                                    _context2.next = 2;
+                                                    return _this.to(0, 0);
+
+                                                case 2:
+                                                case 'end':
+                                                    return _context2.stop();
+                                            }
+                                        }
+                                    }, _callee2, _this2);
+                                })), speed);
+                                // 判断临界点（如果不是循环）
+                                _context3.next = 15;
+                                break;
+
+                            case 8:
+                                if (!(_this.state.activeIndex >= length - 1)) {
+                                    _context3.next = 13;
+                                    break;
+                                }
+
+                                _context3.next = 11;
+                                return _this.to(length - 1, speed);
+
+                            case 11:
+                                _context3.next = 15;
+                                break;
+
+                            case 13:
+                                _context3.next = 15;
+                                return _this.to(_this.state.activeIndex + 1, speed);
+
+                            case 15:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, _this2);
+            }));
+            _this.prev = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+                var _this$props4, children, isCirculate, speed, length;
+
+                return _regenerator2.default.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                _this$props4 = _this.props, children = _this$props4.children, isCirculate = _this$props4.isCirculate, speed = _this$props4.speed;
+                                length = children.length || 0;
+                                // 判断临界点（如果是循环）
+
+                                if (!(isCirculate && _this.state.activeIndex <= 0)) {
+                                    _context5.next = 8;
+                                    break;
+                                }
+
+                                _context5.next = 5;
+                                return _this.to(-1, speed, length - 1);
+
+                            case 5:
+                                setTimeout((0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+                                    return _regenerator2.default.wrap(function _callee4$(_context4) {
+                                        while (1) {
+                                            switch (_context4.prev = _context4.next) {
+                                                case 0:
+                                                    _context4.next = 2;
+                                                    return _this.to(length - 1, 0);
+
+                                                case 2:
+                                                case 'end':
+                                                    return _context4.stop();
+                                            }
+                                        }
+                                    }, _callee4, _this2);
+                                })), speed);
+                                // 判断临界点（如果不是循环）
+                                _context5.next = 15;
+                                break;
+
+                            case 8:
+                                if (!(_this.state.activeIndex <= 0)) {
+                                    _context5.next = 13;
+                                    break;
+                                }
+
+                                _context5.next = 11;
+                                return _this.to(0, speed);
+
+                            case 11:
+                                _context5.next = 15;
+                                break;
+
+                            case 13:
+                                _context5.next = 15;
+                                return _this.to(_this.state.activeIndex - 1, speed);
+
+                            case 15:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, _this2);
+            }));
+
+            _this.to = function () {
+                var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(index, speed, tabIndex) {
+                    var _this$props5, width, isCirculate, children, availIndex, length, currentKey, key, tabKey, dist;
+
+                    return _regenerator2.default.wrap(function _callee6$(_context6) {
+                        while (1) {
+                            switch (_context6.prev = _context6.next) {
+                                case 0:
+                                    _this$props5 = _this.props, width = _this$props5.width, isCirculate = _this$props5.isCirculate, children = _this$props5.children;
                                     availIndex = index;
                                     length = children.length || 0;
 
@@ -8314,35 +8493,41 @@ var Touch = function Touch(WrappedComponent) {
                                     if (tabIndex === void 0) {
                                         tabIndex = availIndex;
                                     }
+                                    currentKey = _this.indexMapping[_this.state.activeIndex];
                                     key = _this.indexMapping[availIndex];
                                     tabKey = _this.indexMapping[tabIndex];
                                     // index+1是因为循环下两边会多出两个
 
                                     dist = isCirculate ? -width * (index + 1) : -width * index || 0;
-                                    _context.next = 11;
+
+                                    _this.translate(dist, speed);
+                                    _context6.next = 13;
                                     return _this.initActiveIndex(key);
 
-                                case 11:
-                                    _this.translate(dist, speed);
-                                    _this.props.changeTab(tabKey);
-
                                 case 13:
+                                    // 传给外部的前一次的key和当前的key
+                                    if (currentKey != tabKey) {
+                                        _this.props.onChange(currentKey, tabKey);
+                                    }
+
+                                case 14:
                                 case 'end':
-                                    return _context.stop();
+                                    return _context6.stop();
                             }
                         }
-                    }, _callee, _this2);
+                    }, _callee6, _this2);
                 }));
 
-                return function (_x, _x2, _x3) {
-                    return _ref.apply(this, arguments);
+                return function (_x2, _x3, _x4) {
+                    return _ref6.apply(this, arguments);
                 };
             }();
 
             _this.translate = function () {
                 var dist = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-                var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 300;
+                var speed = arguments[1];
 
+                // debugger
                 _this.content.style && (_this.content.style.transform = 'translate(' + dist + 'px, 0)');
                 _this.content.style && (_this.content.style.transitionDuration = speed + 'ms');
                 _this.content.style && (_this.content.style.transitionTimingFunction = 'ease-out');
@@ -8360,32 +8545,31 @@ var Touch = function Touch(WrappedComponent) {
         (0, _createClass3.default)(HOC, [{
             key: 'componentDidMount',
             value: function () {
-                var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
-                    var _props$activeKey, activeKey;
+                var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
+                    var _props, _props$activeKey, activeKey, isAuto;
 
-                    return _regenerator2.default.wrap(function _callee2$(_context2) {
+                    return _regenerator2.default.wrap(function _callee7$(_context7) {
                         while (1) {
-                            switch (_context2.prev = _context2.next) {
+                            switch (_context7.prev = _context7.next) {
                                 case 0:
-                                    _props$activeKey = this.props.activeKey, activeKey = _props$activeKey === undefined ? 0 : _props$activeKey;
-
-                                    debugger;
-                                    _context2.next = 4;
+                                    _props = this.props, _props$activeKey = _props.activeKey, activeKey = _props$activeKey === undefined ? 0 : _props$activeKey, isAuto = _props.isAuto;
+                                    _context7.next = 3;
                                     return this.initActiveIndex(activeKey);
 
-                                case 4:
+                                case 3:
                                     this.to(this.getIndexByKey(activeKey), 0);
+                                    isAuto && this.auto();
 
                                 case 5:
                                 case 'end':
-                                    return _context2.stop();
+                                    return _context7.stop();
                             }
                         }
-                    }, _callee2, this);
+                    }, _callee7, this);
                 }));
 
                 function componentDidMount() {
-                    return _ref2.apply(this, arguments);
+                    return _ref7.apply(this, arguments);
                 }
 
                 return componentDidMount;
@@ -8393,62 +8577,74 @@ var Touch = function Touch(WrappedComponent) {
         }, {
             key: 'componentWillReceiveProps',
             value: function () {
-                var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(nextProps) {
+                var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8(nextProps) {
                     var _state$activeIndex, activeIndex;
 
-                    return _regenerator2.default.wrap(function _callee3$(_context3) {
+                    return _regenerator2.default.wrap(function _callee8$(_context8) {
                         while (1) {
-                            switch (_context3.prev = _context3.next) {
+                            switch (_context8.prev = _context8.next) {
                                 case 0:
                                     _state$activeIndex = this.state.activeIndex, activeIndex = _state$activeIndex === undefined ? 0 : _state$activeIndex;
 
-                                    debugger;
-                                    if (this.indexMapping[activeIndex] !== nextProps.activeKey) {
-                                        this.to(this.getIndexByKey(nextProps.activeKey), 300);
+                                    if (!(this.indexMapping[activeIndex] !== nextProps.activeKey)) {
+                                        _context8.next = 5;
+                                        break;
                                     }
 
-                                case 3:
+                                    this.autoTimeout && clearInterval(this.autoTimeout);
+                                    _context8.next = 5;
+                                    return this.to(this.getIndexByKey(nextProps.activeKey), nextProps.speed);
+
+                                case 5:
                                 case 'end':
-                                    return _context3.stop();
+                                    return _context8.stop();
                             }
                         }
-                    }, _callee3, this);
+                    }, _callee8, this);
                 }));
 
                 function componentWillReceiveProps(_x6) {
-                    return _ref3.apply(this, arguments);
+                    return _ref8.apply(this, arguments);
                 }
 
                 return componentWillReceiveProps;
             }()
+        }, {
+            key: 'componentWillUnmount',
+            value: function componentWillUnmount() {
+                window.removeEventListener("touchStart", this.touchStart);
+                window.removeEventListener("touchMove", this.touchMove);
+                window.removeEventListener("touchMove", this.touchMove);
+                this.start = this.indexMapping = this.content = null;
+            }
             // 这里主要是对传入的key进行mapping，转化为index的形式存到state中，便于我们之后操作
 
         }, {
             key: 'initActiveIndex',
             value: function () {
-                var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(activeKey) {
+                var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9(activeKey) {
                     var defaultIndex;
-                    return _regenerator2.default.wrap(function _callee4$(_context4) {
+                    return _regenerator2.default.wrap(function _callee9$(_context9) {
                         while (1) {
-                            switch (_context4.prev = _context4.next) {
+                            switch (_context9.prev = _context9.next) {
                                 case 0:
                                     this.indexMapping = this.getIndexMapping();
                                     defaultIndex = this.getIndexByKey(activeKey);
-                                    _context4.next = 4;
+                                    _context9.next = 4;
                                     return this.setState({
                                         activeIndex: defaultIndex
                                     });
 
                                 case 4:
                                 case 'end':
-                                    return _context4.stop();
+                                    return _context9.stop();
                             }
                         }
-                    }, _callee4, this);
+                    }, _callee9, this);
                 }));
 
                 function initActiveIndex(_x7) {
-                    return _ref4.apply(this, arguments);
+                    return _ref9.apply(this, arguments);
                 }
 
                 return initActiveIndex;
@@ -8463,10 +8659,10 @@ var Touch = function Touch(WrappedComponent) {
         }, {
             key: 'getIndexMapping',
             value: function getIndexMapping() {
-                var _props = this.props,
-                    _props$onSelect = _props.onSelect,
-                    onSelect = _props$onSelect === undefined ? noop : _props$onSelect,
-                    children = _props.children;
+                var _props2 = this.props,
+                    _props2$onSelect = _props2.onSelect,
+                    onSelect = _props2$onSelect === undefined ? noop : _props2$onSelect,
+                    children = _props2.children;
 
                 var mapping = [];
                 _react2.default.Children.map(children, function (child, i) {
@@ -8476,60 +8672,6 @@ var Touch = function Touch(WrappedComponent) {
             }
             // 对循环状态下的children做了一些处理
 
-        }, {
-            key: 'next',
-            value: function next() {
-                var _this3 = this;
-
-                var _props2 = this.props,
-                    _props2$changeTab = _props2.changeTab,
-                    changeTab = _props2$changeTab === undefined ? noop : _props2$changeTab,
-                    children = _props2.children,
-                    isCirculate = _props2.isCirculate;
-
-                var length = children.length || 0;
-                var speed = 300;
-                // 判断临界点（如果是循环）
-                if (isCirculate && this.state.activeIndex >= length - 1) {
-                    this.to(length, speed, 0);
-                    setTimeout(function () {
-                        _this3.to(0, 0);
-                    }, speed);
-                    // 判断临界点（如果不是循环）
-                } else if (this.state.activeIndex >= length - 1) {
-                    this.to(length - 1, speed);
-                    // 如果不是临界点
-                } else {
-                    this.to(this.state.activeIndex + 1);
-                }
-            }
-        }, {
-            key: 'prev',
-            value: function prev() {
-                var _this4 = this;
-
-                var _props3 = this.props,
-                    _props3$changeTab = _props3.changeTab,
-                    changeTab = _props3$changeTab === undefined ? noop : _props3$changeTab,
-                    children = _props3.children,
-                    isCirculate = _props3.isCirculate;
-
-                var length = children.length || 0;
-                var speed = 300;
-                // 判断临界点（如果是循环）
-                if (isCirculate && this.state.activeIndex <= 0) {
-                    this.to(-1, speed, length - 1);
-                    setTimeout(function () {
-                        _this4.to(length - 1, 0);
-                    }, speed);
-                    // 判断临界点（如果不是循环）
-                } else if (this.state.activeIndex <= 0) {
-                    this.to(0, speed);
-                    // 如果不是临界点
-                } else {
-                    this.to(this.state.activeIndex - 1, speed);
-                }
-            }
             // 要滑动到的index, 速度speed, 头部展示的index
 
         }, {
@@ -8546,7 +8688,22 @@ var Touch = function Touch(WrappedComponent) {
             }
         }]);
         return HOC;
-    }(_react2.default.Component), _class.displayName = 'HOC(' + getDisplayName(WrappedComponent) + ')', _temp;
+    }(_react2.default.Component), _class.displayName = 'HOC(' + getDisplayName(WrappedComponent) + ')', _class.propTypes = {
+        speed: _propTypes2.default.number,
+        auto: _propTypes2.default.number,
+        isAuto: _propTypes2.default.bool,
+        children: _propTypes2.default.node,
+        onSelect: _propTypes2.default.func,
+        isCirculate: _propTypes2.default.bool,
+        activeKey: _propTypes2.default.node
+    }, _class.defaultProps = {
+        speed: 300,
+        auto: 3000,
+        isAuto: true,
+        onSelect: noop,
+        isCirculate: true,
+        activeKey: 0
+    }, _temp;
 };
 exports.default = Touch;
 
@@ -9495,7 +9652,7 @@ module.exports = __webpack_require__(3).Promise;
 "use strict";
 
 var LIBRARY = __webpack_require__(42);
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var ctx = __webpack_require__(24);
 var classof = __webpack_require__(104);
 var $export = __webpack_require__(7);
@@ -9522,7 +9679,7 @@ var USE_NATIVE = !!function () {
   try {
     // correct subclassing with @@species support
     var promise = $Promise.resolve(1);
-    var FakePromise = (promise.constructor = {})[__webpack_require__(5)('species')] = function (exec) {
+    var FakePromise = (promise.constructor = {})[__webpack_require__(6)('species')] = function (exec) {
       exec(empty, empty);
     };
     // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
@@ -9840,7 +9997,7 @@ module.exports = function (fn, args, that) {
 /* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var macrotask = __webpack_require__(109).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
@@ -9929,11 +10086,11 @@ module.exports = function (target, src, safe) {
 
 "use strict";
 
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var core = __webpack_require__(3);
 var dP = __webpack_require__(9);
 var DESCRIPTORS = __webpack_require__(15);
-var SPECIES = __webpack_require__(5)('species');
+var SPECIES = __webpack_require__(6)('species');
 
 module.exports = function (KEY) {
   var C = typeof core[KEY] == 'function' ? core[KEY] : global[KEY];
@@ -9953,7 +10110,7 @@ module.exports = function (KEY) {
 
 var $export = __webpack_require__(7);
 var core = __webpack_require__(3);
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var speciesConstructor = __webpack_require__(108);
 var promiseResolve = __webpack_require__(111);
 
@@ -10165,9 +10322,6 @@ var TabPane = function (_React$PureComponent) {
                 });
             }
         }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {}
     }, {
         key: 'render',
         value: function render() {

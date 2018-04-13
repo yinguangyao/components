@@ -16,9 +16,6 @@ class TabPane extends React.PureComponent {
             })
         }
     }
-    componentWillUnmount() {
-
-    }
     render() {
         const {
             children,

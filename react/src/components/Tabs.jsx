@@ -62,7 +62,9 @@ class Tabs extends React.PureComponent {
             onSelect = noop,
             children,
             width = this.getDeviceWidth(),
-            isCirculate = true
+            isCirculate = true,
+            speed = 300,
+            auto = 2000
         } = this.props
         return (
             <div className="tabs">
@@ -70,9 +72,14 @@ class Tabs extends React.PureComponent {
                     {this.renderNav()}
                     <TabContent 
                         activeKey={this.state.activeKey}
-                        onSelect={onSelect}
                         width={width}
-                        changeTab={this.changeTab}
+                        onChange={
+                            (prevKey, currentKey) => {
+                                this.changeTab(currentKey)
+                            }
+                        }
+                        speed={speed}
+                        auto={auto}
                         isCirculate={isCirculate}
                     >
                         {children}
