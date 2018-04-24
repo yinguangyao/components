@@ -13,7 +13,7 @@ const data = {
 }
 
 const render = (tpl, data, targetNode) => {
-    $(targetNode).get(0).html(templateX(tpl, data))
+    $(targetNode).get(0).html(templateY(tpl, data))
 }
 $.ready(() => {
     const tpl = $("#tpl").get(0).html()

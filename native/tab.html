@@ -12,19 +12,19 @@
     <script id="tpl" type="text/template">
         <ul class="tab-nav-list">
             <%for(var i=0;i<tabs.length;i++) {%>
-                <li class="tab-nav-item" data-index="<%i%>"><%tabs[i].nav%></li>
+                <li class="tab-nav-item" data-index="<%=i%>"><%=tabs[i].nav%></li>
             <%}%>
         </ul>
         <div class="tab-content">
             <%for(var i=0;i<tabs.length;i++) {%>
                 <div class="tab-pane">
-                    <div class="pane-content"><%tabs[i].content%></div>
+                    <div class="pane-content"><%=tabs[i].content%></div>
                 </div>
             <%}%>
         </div>
     </script>
     <script src="./javascript/lib/$.js"></script>
-    <script src="./javascript/lib/templateX.js"></script>
+    <script src="./javascript/lib/templateY.js"></script>
     <script src="./javascript/components/tab.js"></script>
     <script src="./javascript/tab.js"></script>
 </body>
