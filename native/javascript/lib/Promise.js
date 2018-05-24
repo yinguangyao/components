@@ -1,50 +1,94 @@
 (function() {
-    var Promise = function(execute) {
-        this.status = "pending"
-        this.data = null
-        this.error = null
-        this.onFullFilledList = []
-        this.onRejectedList = []
-        var _self = this
-        function resolve(data) {
-            if(_self.status === "pending") {
-                _self.status = "fullfilled"
-                _self.data = data
+    const toString = Object.prototype.toString;
+    const isArray = arr => {
+        if(toString.call(arr) === "[object Array]") {
+            return true;
+        }
+        return false;
+    }
+    function noop() {}
+    const PENDING = "pending",
+        RESOLVE = "resolve",
+        REJECT = "reject"
+    const handler = {
+        resolve: (self, value) => {
+            if(self.state == PENDING) {
+                self.value = value;
+                self.state = RESOLVE;
+            }
+        },
+        reject: (self, value) => {
+            if(self.state == PENDING) {
+                self.value = value;
+                self.state = REJECT;
             }
         }
-        function reject(err) {
-            if(_self.status === "pending") {
-                _self.status = "rejected"
-                _self.error = err
+    }
+    const executeResolver = (self, resolver) => {
+        let called = false
+        const resolve = (value) => {
+            if(!called) {
+                called = true
+                handler.resolve(self, value);
             }
         }
-        execute(resolve, reject);
-    }
-    Promise.prototype.then = function(res, rej) {
-        if(this.status === "fullfilled") {
-            res && res(this.data);
-            return;
+        const reject = (value) => {
+            if(!called) {
+                called = true
+                handler.reject(self, value);
+            }
         }
-        if(this.status === "rejected") {
-            rej && rej(this.error);
+        resolver(resolve, reject);
+    }
+    class Promise {
+        constructor(resolver) {
+            if(typeof resolver !== "function") {
+                throw new Error("the parameter of Promise must be a function")
+            }
+            this.queue = []
+            this.value = void 0
+            this.state = PENDING
+            executeResolver(this, resolver);
+        }
+
+        static resolve() {
+
+        }
+
+        static all(arr) {
+
+        }
+
+        static race() {
+
+        }
+
+        then(resolve, reject) {
+            const p = new Promise(noop);
+            if(this.state == RESOLVE && resolve) {
+                setTimeout(() => {
+                    const value = resolve(this.value);
+                    handler.resolve(p, value);
+                }, 0)
+                return p;
+            }
+            if(this.state == REJECT && reject) {
+                setTimeout(() => {
+                    const value = reject(this.value);
+                    handler.reject(p, value);
+                }, 0)
+                return p;
+            }
+            return this;
+        }
+
+        catch(reject) {
+            return this.then(null, reject);
+        }
+
+        finally() {
+
         }
     }
-    Promise.prototype.catch = function(reject) {
-        this.then(null, reject);
-    }
-    Promise.prototype.finally = function(finallyFunc) {
-        if(this.status !== "pending") {
-            finallyFunc();
-        }
-    }
-    var test = function() {
-        return new Promise(function(resolve, reject) {
-            resolve("success");
-        })
-    }
-    test().then(function(data) {
-        console.log(data)
-    }, function(err) {
-        console.log(err)
-    })
+    window.Promise = Promise
 }.call(this))

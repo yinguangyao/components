@@ -6,6 +6,7 @@ function INTERNAL() {}
 
 var handlers = {};
 
+// 三种状态
 var REJECTED = ['REJECTED'];
 var FULFILLED = ['FULFILLED'];
 var PENDING = ['PENDING'];
@@ -17,10 +18,12 @@ if (!process.browser) {
 
 module.exports = Promise;
 
+// 构造函数，resolver是应该传入的函数
 function Promise(resolver) {
   if (typeof resolver !== 'function') {
     throw new TypeError('resolver must be a function');
   }
+  // 初始化处于pending状态
   this.state = PENDING;
   this.queue = [];
   this.outcome = void 0;
@@ -28,6 +31,7 @@ function Promise(resolver) {
   if (!process.browser) {
     this.handled = UNHANDLED;
   }
+  // 如果传入的不是INTERNAL
   if (resolver !== INTERNAL) {
     safelyResolveThenable(this, resolver);
   }
@@ -37,20 +41,25 @@ Promise.prototype.finally = function (callback) {
   if (typeof callback !== 'function') {
     return this;
   }
+  // p是Promise构造函数
   var p = this.constructor;
   return this.then(resolve, reject);
 
   function resolve(value) {
-    function yes () {
+    return p.resolve(callback()).then(function yes () {
       return value;
-    }
-    return p.resolve(callback()).then(yes);
+    });
   }
+  // 如果这样是不是也行
+  // function resolve(value) {
+  //  callback();
+  //  return p.resolve(value)
+  // }
+
   function reject(reason) {
-    function no () {
+    return p.resolve(callback()).then(function no () {
       throw reason;
-    }
-    return p.resolve(callback()).then(no);
+    });
   }
 };
 Promise.prototype.catch = function (onRejected) {
@@ -167,9 +176,10 @@ function getThen(obj) {
     };
   }
 }
-
+// 传入的是Promise构造函数的this和resolver
 function safelyResolveThenable(self, thenable) {
   // Either fulfill, reject or reject with error
+  // 只能为fulfill和reject其中一种状态
   var called = false;
   function onError(value) {
     if (called) {
@@ -192,6 +202,7 @@ function safelyResolveThenable(self, thenable) {
   }
 
   var result = tryCatch(tryToUnwrap);
+  // 如果有错误
   if (result.status === 'error') {
     onError(result.value);
   }
@@ -200,6 +211,8 @@ function safelyResolveThenable(self, thenable) {
 function tryCatch(func, value) {
   var out = {};
   try {
+    // 这里tryToUnwrap什么都未返回
+    // 如果执行中出错，那么抛出错误
     out.value = func(value);
     out.status = 'success';
   } catch (e) {
